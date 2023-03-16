@@ -1,0 +1,58 @@
+$gray: gray;
+
+$width: 1440px;
+$header-height: 740px;
+$content-height: 800px;
+$footer-height: 700px;
+
+$p-font-size: 18px;
+$p-font-size-large: 20px;
+$p-font-size-small: 16px;
+$h1-font-size: 72px;
+$h2-font-size: 48px;
+$h3-font-size: 24px;
+
+$margin: 50px;
+$margin-left: 40px;
+
+html {
+  font-size: $p-font-size;
+  color: $gray;
+  background-color: lightblue;
+}
+
+body {
+  max-width: $width;
+  margin: auto;
+  text-align: center;
+}
+
+header, main, footer {
+  border: 1px dashed $gray;
+}
+
+h1 {
+  font-size: $h1-font-size;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+header {
+  height: $header-height;
+}
+
+main {
+  height: $content-height;
+}
+
+footer {
+  height: $footer-height;
+  background-color: black;
+}
