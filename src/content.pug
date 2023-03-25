@@ -1,6 +1,26 @@
 main
-    article
-        section
-            h1 Content
-    article
-        h2 Content-Text
+    .filter
+        h2 Filter by
+        .product-type
+            label(for='product-type') Product Type:
+            br
+            select(name='product-type' id='product-type')
+                option(value='all') All
+                option(value='nutrition') Sports Nutrition
+                option(value='sportswear') Sportswear
+                option(value='trainers') Trainers
+        .price-filter
+            label(for='min-price') Price:
+            input(type='number', name='min-price', placeholder='Min', min='0')
+            br
+            input(type='number', name='max-price', placeholder='Max', min='0')
+            br
+            button(type='submit') Apply
+    .products
+        .product
+            .product-image
+                img(src='img/nike_air_max_90.png', alt='Nike Air Max 90')
+            h3='Nike Air Max 90'
+            p='Classic sneakers with Max Air cushioning.'
+            p.price $#{120}
+            button(type='button') Add to cart

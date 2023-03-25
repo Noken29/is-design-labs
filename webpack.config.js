@@ -4,6 +4,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FileManagerPlugin = require("filemanager-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const events = require("events");
 
 const isProduction = process.env.NODE_ENV == 'production';
@@ -14,9 +15,11 @@ const stylesHandler = MiniCssExtractPlugin.loader;
 
 
 const config = {
-    entry: './src/index.ts',
+    entry: path.join(__dirname, 'src', 'index.ts'),
     output: {
         path: path.resolve(__dirname, 'dist'),
+        filename: 'index.js',
+        assetModuleFilename: path.join('src/img', '[name].[ext]')
     },
     devServer: {
         open: true,
@@ -31,15 +34,12 @@ const config = {
         new MiniCssExtractPlugin({
             filename: '[name].css'
         }),
-        /*new FileManagerPlugin({
-            events: {
-                onEnd: {
-                    delete: ['dist']
-                }
-            }
-        })*/
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+
+        new CopyWebpackPlugin({
+            patterns: [
+                {from: 'src/img', to: 'img'}
+            ]
+        }),
     ],
     module: {
         rules: [
@@ -53,13 +53,13 @@ const config = {
                 use: ['style-loader',  'css-loader', 'postcss-loader', 'sass-loader'],
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
+                test: /\.(png|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
             {
                 test: /\.pug$/,
                 loader: 'pug-loader'
-            },
+            }
         ],
     },
     resolve: {
@@ -70,8 +70,6 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = 'production';
-        
-        
     } else {
         config.mode = 'development';
     }
