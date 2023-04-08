@@ -1,26 +1,21 @@
 main
     .filter
         h2 Filter by
-        .product-type
-            label(for='product-type') Product Type:
-            br
-            select(name='product-type' id='product-type')
-                option(value='all') All
-                option(value='nutrition') Sports Nutrition
-                option(value='sportswear') Sportswear
-                option(value='trainers') Trainers
-        .price-filter
-            label(for='min-price') Price:
-            input(type='number', name='min-price', placeholder='Min', min='0')
-            br
-            input(type='number', name='max-price', placeholder='Max', min='0')
-            br
-            button(type='submit') Apply
+        ul
+            li.product-type
+                label(for='product-type') Product Type:
+                select(name='product-type' id='product-type')
+                    option(value='all') All
+                    option(value='nutrition') Sports Nutrition
+                    option(value='sportswear') Sportswear
+                    option(value='trainers') Trainers
+            li.price-filter
+                ul
+                    li
+                        label(for='min-price') Price:
+                        input(type='number', id='min-price', name='min-price', placeholder='Min', min='0', defaultValue='0')
+                    li
+                        input(type='number', id='max-price', name='max-price', placeholder='Max', min='0', defaultValue='99999')
+                    li
+                        button(type='submit', id='apply-button') Apply
     .products
-        .product
-            .product-image
-                img(src='img/nike_air_max_90.png', alt='Nike Air Max 90')
-            h3='Nike Air Max 90'
-            p='Classic sneakers with Max Air cushioning.'
-            p.price $#{120}
-            button(type='button') Add to cart
