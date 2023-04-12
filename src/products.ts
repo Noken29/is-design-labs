@@ -41,5 +41,19 @@ export const products: Product[] = [
         type: 'sportswear',
         price: 39.99,
         image: "reebok_yoga_mat.jpg",
+    },
+    {
+        name: "Trainer for biceps and triceps",
+        description: "The Body-Solid GCBT380 training station is functional equipment designed for biceps and triceps strengthening exercises. The seat and support are upholstered with soft, comfortable DuraFirm foam, which guarantees maximum comfort during training. The Body-Solid GCBT380 training station is designed for all types of gyms.",
+        type: 'trainers',
+        price: 799.99,
+        image: "body_solid.jpg",
+    },
+    {
+        name: "Creatine XPLODE - 500g",
+        description: "One portion = 5 grams: Calories 0 kcal Protein 0 g Carbohydrates 0 g Fats 0 g Creatine mixtures 3669 mg of which: Magnesium creatine chelate Creatine malate Creatine ethyl ester Creatine alpha-ketoglutarate Creatine pyruvate Creatine citrate Taurine 500 mg",
+        type: 'nutrition',
+        price: 799.99,
+        image: "creatine.jpg",
     }
 ]

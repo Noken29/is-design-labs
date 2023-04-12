@@ -1,5 +1,4 @@
-import {products} from './products'
-import Product from './products'
+import Product, {products} from './products'
 
 let productsCurrentState : Product[] = products
 
@@ -61,25 +60,33 @@ document.querySelector('#apply-button')['onclick'] = function () {
     let maxPrice = parseFloat(document.querySelector('#max-price')['value'])
     if (isNaN(minPrice)) minPrice = 0
     if (isNaN(maxPrice)) maxPrice = 999999999
-    let applyPriceFilter = minPrice < maxPrice
-    let filteredProducts : Product[] = productsCurrentState.filter(e => e.type === productType || productType === 'all')
-    if (applyPriceFilter)
-        filteredProducts = filteredProducts.filter(e => e.price > minPrice && e.price < maxPrice)
+    // @ts-ignore
+    let searchQuery : string = document.querySelector('#search-input')['value']
+    let filteredProducts : Product[] = products
+    if (searchQuery !== undefined && searchQuery !== '')
+        applySearch()
+    if (productType !== 'all')
+        filteredProducts = filteredProducts.filter(e => e.type === productType)
+    if (minPrice < maxPrice)
+        filteredProducts = filteredProducts.filter(e => e.price >= minPrice && e.price <= maxPrice)
     productsCurrentState = filteredProducts
     productsView(productsCurrentState)
 }
 
 // @ts-ignore
 document.querySelector('#search-button')['onclick'] = function () {
+    applySearch()
+    productsView(productsCurrentState)
+}
+
+function applySearch() {
     // @ts-ignore
     let searchQuery : string = document.querySelector('#search-input')['value']
     let searchParams = searchQuery.toLowerCase().trim().split(/\s+/)
     console.log(searchParams)
-    let filteredProducts = products.filter(e => {
+    productsCurrentState = products.filter(e => {
         let nameField = e.name.toLowerCase().trim()
         let descriptionField = e.description.toLowerCase().trim()
         return searchParams.some(e => nameField.includes(e) || descriptionField.includes(e))
     })
-    productsCurrentState = filteredProducts
-    productsView(productsCurrentState)
 }
